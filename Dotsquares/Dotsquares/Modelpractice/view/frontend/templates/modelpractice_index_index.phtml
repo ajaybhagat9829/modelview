@@ -1,0 +1,43 @@
+<?php
+/* @var Jayanka\HelloWorld\Block\Hello $block */
+$cars = $block->getAllCars();
+?>
+
+<form method="post" action="<?= $block->getAddCarPostUrl() ?>">
+   <fieldset>
+       <div>
+            <label for="manufacturer"><?= __("Auther Name") ?></label>
+           <input type="text" name="auther_name" id="auther_name" />
+      </div>
+       <div>
+            <label for="model"><?= __("Email") ?>
+           <input type="text" name="email" id="email" />
+       </div>
+       <div>
+            <label for="model"><?= __("Description") ?>
+           <input type="text" name="description" id="description" />
+       </div>
+      <input type="submit" value="<?= __("Add Car") ?>" />
+   </fieldset>
+</form>
+<hr />
+<?php if (count($cars) > 0): ?>
+ <table border="1">
+      <tr>
+         <th><?= __("ID") ?></th>
+         <th><?= __("Auther Name") ?></th>
+            <th><?= __("Email") ?></th>
+            <th><?= __("Description") ?></th>
+        </tr>
+       <?php foreach ($cars as $car): ?>
+            <tr>
+               <td><?= $car->getId() ?>
+               <td><?= $car->getAuthorName() ?>
+              <td><?= $car->getEmail() ?>
+                  <td><?= $car->getDescription() ?>
+           </tr>
+      <?php endforeach; ?>
+    </table>
+<?php else: ?>
+    <h1><?= __("You have no cars yet :(") ?></h1>
+<?php endif; ?>
